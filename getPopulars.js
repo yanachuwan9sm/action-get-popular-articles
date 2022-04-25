@@ -1,7 +1,7 @@
 const { BetaAnalyticsDataClient } = require("@google-analytics/data");
 require("dotenv").config();
 
-const propertyId = process.env.GOOGLE_ANALYTICS_PROPERTY_ID ?? "";
+const propertyId = process.env.GOOGLE_ANALYTICS_PROPERTY_ID;
 
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
