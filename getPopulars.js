@@ -9,9 +9,11 @@ const fetch = (...args) =>
 //const analyticsDataClient = new BetaAnalyticsDataClient();
 const analyticsDataClient = new BetaAnalyticsDataClient({
   credentials: {
-    client_email: process.env.GOOGLE_APPLICATION_CLIENT_EMAIL ?? "",
-    private_key:
-      process.env.GOOGLE_APPLICATION_PRIVATE_KEY.replace(/\\n/gm, "\n") ?? "",
+    client_email: process.env.GOOGLE_APPLICATION_CLIENT_EMAIL,
+    private_key: process.env.GOOGLE_APPLICATION_PRIVATE_KEY.replace(
+      /\\n/gm,
+      "\n"
+    ),
   },
 });
 
