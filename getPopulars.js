@@ -39,10 +39,6 @@ async function runReport() {
     limit: 5,
   });
 
-  res.rows.forEach((row) => {
-    console.log(row.dimensionValues[0], row.metricValues[0]);
-  });
-
   //コンテンツIDのみを取得する
   const contentIds = res.rows
     .map((row) => row.dimensionValues[0].value.split("/")[2])
@@ -60,8 +56,6 @@ async function runReport() {
       body: JSON.stringify({ articles: contentIds }),
     }
   );
-
-  console.log(await result.json());
 }
 
 runReport();
