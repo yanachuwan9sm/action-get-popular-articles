@@ -30,13 +30,13 @@ jobs:
           npm ci
           npm run build --if-present
           npm test
+          node getPopulars.js
       env: 
            GOOGLE_APPLICATION_CLIENT_EMAIL: ${{ secrets.GOOGLE_APPLICATION_CLIENT_EMAIL }}
            GOOGLE_APPLICATION_PRIVATE_KEY: ${{ secrets.GOOGLE_APPLICATION_PRIVATE_KEY }}
            GOOGLE_ANALYTICS_PROPERTY_ID: ${{ secrets.GOOGLE_ANALYTICS_PROPERTY_ID }}
            MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
            SERVICE_DOMAIN: ${{ secrets.SERVICE_DOMAIN }}
-    - name: Script Start
-      run: |
-          node getPopulars.js
+   
+           
        
