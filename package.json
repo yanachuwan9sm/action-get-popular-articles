@@ -1,0 +1,21 @@
+{
+  "name": "get-popular-articles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "getPopulars.js",
+  "dependencies": {
+    "@google-analytics/data": "^2.8.0",
+    "@google/clasp": "^2.4.1",
+    "@types/google-apps-script": "^1.0.46",
+    "dotenv": "^16.0.0",
+    "googleapis": "^100.0.0",
+    "node-fetch": "^3.2.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
