@@ -5,6 +5,8 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  schedule:
+    - cron: '0 15 * * 1' # 毎週月曜日日本時間午前0時実行
 
 jobs:
   build:
@@ -16,13 +18,14 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
 
     steps:
-    - uses: actions/checkout@v3
+    - name: CheckOut
+      uses: actions/checkout@v3     
     - name: Set up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - name: GetPopularArticle
+        cache: 'npm'        
+    - name: Build
       run: 
           npm ci
           npm run build --if-present
@@ -33,5 +36,7 @@ jobs:
            GOOGLE_ANALYTICS_PROPERTY_ID: ${{ secrets.GOOGLE_ANALYTICS_PROPERTY_ID }}
            MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
            SERVICE_DOMAIN: ${{ secrets.SERVICE_DOMAIN }}
-           
-
+    - name: Script Start
+      run: |
+          node getPopulars.js
+       
