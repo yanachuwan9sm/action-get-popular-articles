@@ -1,0 +1,35 @@
+name: GetPopularArticle
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
+    - env: 
+           GOOGLE_APPLICATION_CLIENT_EMAIL: ${{ secrets.GOOGLE_APPLICATION_CLIENT_EMAIL }}
+           GOOGLE_APPLICATION_PRIVATE_KEY: ${{ secrets.GOOGLE_APPLICATION_PRIVATE_KEY }}
+           GOOGLE_ANALYTICS_PROPERTY_ID: ${{ secrets.GOOGLE_ANALYTICS_PROPERTY_ID }}
+           MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
+           SERVICE_DOMAIN: ${{ secrets.SERVICE_DOMAIN }}
+           
+
